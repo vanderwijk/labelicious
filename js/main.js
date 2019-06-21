@@ -100,19 +100,19 @@ jQuery(document).ready(function ($) {
 
 	}
 
-	if (typeof next_id !== 'undefined') {
-		$('#main-content').on('swipeleft', '.thumbnail', function () {
+		$('body').on('swipeleft', 'main', function () {
 			location.hash = '#' + next_id;
 			loadSingleEntry();
-			console.log(next_id);
 		});
-	}
 
-	if (typeof previous_id !== 'undefined') {
-		$('#main-content').on('swiperight', '.thumbnail', function () {
+		$('body').on('swiperight', 'main', function () {
 			location.hash = '#' + previous_id;
 			loadSingleEntry();
 		});
-	}
+
+		$('#main-content').on('dbltap', '.thumbnail', function () {
+			console.log('like!');
+		});
+
 
 });
