@@ -34,7 +34,8 @@ jQuery(document).ready(function ($) {
 				$(window).scrollTop(0);
 				$('.description').hide();
 				$('.loading').addClass('hidden');
-				console.log(data.responseJSON.next.id);
+				next_id = (data.responseJSON.next.id);
+				previous_id = (data.responseJSON.previous.id);
 			},
 			error: function() {
 				alert( 'cannot load entry' );
@@ -95,8 +96,14 @@ jQuery(document).ready(function ($) {
 
 	}
 
-});
+	$('#main-content').on('swipeleft', '.thumbnail', function () {
+		location.hash = '#' + next_id;
+		loadSingleEntry();
+	});
 
-jQuery('.thumbnail').on('swiperight',function(e,data){
-	alert('test');
+	$('#main-content').on('swiperight', '.thumbnail', function () {
+		location.hash = '#' + previous_id;
+		loadSingleEntry();
+	});
+
 });
