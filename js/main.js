@@ -34,8 +34,12 @@ jQuery(document).ready(function ($) {
 				$(window).scrollTop(0);
 				$('.description').hide();
 				$('.loading').addClass('hidden');
-				next_id = (data.responseJSON.next.id);
-				previous_id = (data.responseJSON.previous.id);
+				if ( !$.isEmptyObject( data.responseJSON.next )) {
+					next_id = (data.responseJSON.next.id);
+				}
+				if ( !$.isEmptyObject( data.responseJSON.previous )) {
+					previous_id = (data.responseJSON.previous.id);
+				}
 			},
 			error: function() {
 				alert( 'cannot load entry' );
@@ -96,14 +100,19 @@ jQuery(document).ready(function ($) {
 
 	}
 
-	$('#main-content').on('swipeleft', '.thumbnail', function () {
-		location.hash = '#' + next_id;
-		loadSingleEntry();
-	});
+	if (typeof next_id !== 'undefined') {
+		$('#main-content').on('swipeleft', '.thumbnail', function () {
+			location.hash = '#' + next_id;
+			loadSingleEntry();
+			console.log(next_id);
+		});
+	}
 
-	$('#main-content').on('swiperight', '.thumbnail', function () {
-		location.hash = '#' + previous_id;
-		loadSingleEntry();
-	});
+	if (typeof previous_id !== 'undefined') {
+		$('#main-content').on('swiperight', '.thumbnail', function () {
+			location.hash = '#' + previous_id;
+			loadSingleEntry();
+		});
+	}
 
 });
