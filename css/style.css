@@ -1,0 +1,160 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Lora', serif;
+	font-weight: 400;
+	margin: 0;
+}
+
+button {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 60rem;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+header {
+	padding: 10px 4% 0 4%;
+}
+
+section {
+	padding: 0 4%;
+}
+@media (min-width: 1024px) {
+	header img {
+		max-width: 350px;
+	}
+}
+
+main {
+	position: relative;
+}
+
+.entry-single p {
+	line-height: 1.5em;
+}
+
+.loading {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 1);
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loading svg {
+	width: 56px;
+	height: 46px;
+}
+
+.loading.hidden {
+	display: none;
+}
+
+.rotate {
+	animation: rotation 4s infinite ease-out;
+	animation: rotateplane 1.5s infinite ease-out;
+}
+
+@keyframes rotation {
+	from {
+		transform: translateY(50px) translateX(-50px) rotate(0deg);
+	}
+	to {
+		transform: translateY(-50px) translateX(50px) rotate(359deg);
+	}
+}
+
+@keyframes rotateplane {
+	0% {
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+	} 50% {
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+	} 100% {
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+}
+
+nav {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 4%;
+}
+@media (max-width: 1024px) and (orientation: portrait) {
+	nav {
+		background-color: #fff;
+		border-top: 1px solid #eee;
+		bottom: 0;
+		position: fixed;
+	}
+	.entry-single {
+		margin-bottom: 100px;
+	}
+}
+
+button {
+	background-color: #fe7e01;
+	border-color: #fe7e01;
+	color: #ffffff;
+	border-bottom-color: #d03808;
+	border-radius: 3px;
+	padding: 10px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	margin: 3px 0;
+	max-width: 75%;
+	text-align: center;
+}
+
+.start {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 1em;
+}
+
+a[href$=".pdf"]:before {
+	margin-right: 5px;
+	content: "";
+	background-image: url( '../img/attachment-pdf.svg' );
+	background-size: 100% 100%;
+	display: inline-block;
+
+	height: 25px;
+	width: 25px;
+
+	position: relative;
+	top: 5px;
+}
+
+a[href$=".jpg"]:before {
+	margin-right: 5px;
+	content: "";
+	background-image: url( '../img/attachment-jpg.svg' );
+	background-size: 100% 100%;
+	display: inline-block;
+
+	height: 25px;
+	width: 25px;
+
+	position: relative;
+	top: 5px;
+}
