@@ -1,76 +1,57 @@
-$(function () {
-
-	const RESTURL = 'https://www.labelicious.eu/wp-json/';
-	//const RESTURL = 'http://labelicious.local/wp-json/'
-
-	function loadSingleEntry(url) {
-
-		var id = url;
-		var api = RESTURL + 'wp/v2/entry/' + id + '?_embed'
-
-		$.ajax({
-			url: api,
-			dataType: "json",
-			beforeSend: function() {
-				$('.loading').removeClass('hidden');
-			},
-			success: function(response) {
-				var template = $( '#entry-single-template' ).html()
-				var output = $( '#main-content' )
-				var result = Mustache.to_html( template, response )
-				output.html( result )
-			},
-			complete: function() {
-				$(window).scrollTop(0);
-				$('.description').hide();
-				$('.loading').addClass('hidden');
-			},
-			error: function() {
-				alert( 'cannot load entry' )
-			}
-		});
-	}
-
-	var load = function (url) {
-		$.get(url).done(function (data) {
-			$("#main-content").html(data);
-		})
-	};
-
-	$(document).on('click', 'a', function (e) {
-		e.preventDefault();
-
-		var $this = $(this),
-			url = $this.attr("href"),
-			title = $this.text();
-
-		history.pushState({
-			url: url,
-			title: title
-		}, title, url);
-
-		document.title = title;
-
-		loadSingleEntry(url);
-	});
-
-	$(window).on('popstate', function (e) {
-		var state = e.originalEvent.state;
-		if (state !== null) {
-			document.title = state.title;
-			load(state.url);
-		} else {
-			url = '/wp-content/themes/enfold-child/app/';
-			window.location.reload();
-		}
-	});
-});
-
 jQuery(document).ready(function ($) {
 
-	
+	const RESTURL = 'https://www.labelicious.eu/wp-json/'
+
+	window.addEventListener('hashchange', loadSingleEntry, false);
+
+	if ( window.location.hash ) {
+		loadSingleEntry();
+	}
+
+	function loadSingleEntry() {
+
+		if ( window.location.hash ) {
+
+			var id = window.location.hash.substring(1);
+			var api = RESTURL + 'wp/v2/entry/' + id + '?_embed'
+
+			$.ajax({
+				url: api,
+				dataType: "json",
+				beforeSend: function() {
+					$('.loading').removeClass('hidden');
+				},
+				success: function(response) {
+					var template = $( '#entry-single-template' ).html()
+					var output = $( '#main-content' )
+					var result = Mustache.to_html( template, response )
+					output.html( result )
+				},
+				complete: function() {
+					$(window).scrollTop(0);
+					$('.description').hide();
+					$('.loading').addClass('hidden');
+				},
+				error: function() {
+					alert( 'cannot load entry' )
+				}
+			});
+		} else {
+			var template = $( '#entry-listing-template' ).html()
+			var output = $( '#main-content' )
+			var result = Mustache.to_html( template )
+			output.html( result )
+		}
+	}
+
 });
+
 /*
+jQuery(document).ready(function ($) {
+
+	const RESTURL = 'https://www.labelicious.eu/wp-json/'
+	//const RESTURL = 'http://labelicious.local/wp-json/'
+
 	var app = {
 
 		init : function() {
@@ -129,7 +110,36 @@ jQuery(document).ready(function ($) {
 			});
 		},
 
-		
+		loadSingleEntry : function() {
+
+			var id = Math.abs( $( this ).data( 'id' ) )
+			//var id = document.URL.split('#')[1];
+
+			var url = RESTURL + 'wp/v2/entry/' + id + '?_embed'
+
+			$.ajax({
+				url: url,
+				dataType: "json",
+				beforeSend: function() {
+					$('.loading').removeClass('hidden');
+					window.location.hash = id;
+				},
+				success: function(response) {
+					var template = $( '#entry-single-template' ).html()
+					var output = $( '#main-content' )
+					var result = Mustache.to_html( template, response )
+					output.html( result )
+				},
+				complete: function() {
+					$(window).scrollTop(0);
+					$('.description').hide();
+					$('.loading').addClass('hidden');
+				},
+				error: function() {
+					alert( 'cannot load entry' )
+				}
+			});
+		},
 
 
 		loadCategories : function() {
@@ -157,9 +167,9 @@ jQuery(document).ready(function ($) {
 	app.init();
 
 });
-*/
-$('#main-content').on('swiperight', '.thumbnail', function(e) {
-	e.preventDefault();
-	//$(this).parent().next('.category-item-content').toggle();
-	//alert( 'swiperight' )
+
+jQuery('.thumbnail').on('swiperight',function(e,data){
+	alert('test');
 });
+
+*/

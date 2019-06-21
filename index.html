@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>Labelicious.eu</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:400,700" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:400,500" />
 	<link rel="stylesheet" href="css/style.css" />
 
 	<link rel="apple-touch-icon" href="img/icons/touch-icon-iphone.png" />
@@ -39,7 +39,11 @@
 
 		<main>
 			<article id="main-content">
-				<a href="4096">Brand Design</a>
+				<div class="start">
+					<a href="#4096" class="button">Brand Design</a>
+					<a href="#4392" class="button">Smart / Intelligent / Multifunctional Labels</a>
+					<a href="#4401" class="button">Sustainability</a>
+				</div>
 			</article>
 		</main>
 	</div>
@@ -50,17 +54,11 @@
 	<script src="js/main.js"></script>
 
 	<script type="text/template" id="entry-listing-template">
-		{{#posts}}
-		<div class="entry start" data-id="4096">
-			<button><a href="/4096/">Brand Design</a></button>
+		<div class="start">
+			<a href="#4096" class="button">Brand Design</a>
+			<a href="#4392" class="button">Smart / Intelligent / Multifunctional Labels</a>
+			<a href="#4401" class="button">Sustainability</a>
 		</div>
-		<div class="entry start" data-id="4392">
-			<button>Smart / Intelligent / Multifunctional Labels</button>
-		</div>
-		<div class="entry start" data-id="4401">
-			<button>Sustainability</button>
-		</div>
-		{{/posts}}
 	</script>
 
 	<script type="text/template" id="entry-single-template">
@@ -78,11 +76,11 @@
 
 		<nav>
 			{{#previous.id}}
-				<button class="button previous-button" id="previous" data-id="{{previous.id}}">Previous</button>
+				<a href="#{{previous.id}}" class="button previous-button">Previous</a>
 			{{/previous.id}}
-			<button class="button back-button" id="back"><a href="/">Home</a></button>
+			<a href="./" class="button back-button" id="back">Home</a>
 			{{#next.id}}
-				<button class="button next-button" id="next" data-id="{{next.id}}">Next</button>
+				<a href="#{{next.id}}" class="button next-button">Next</a>
 			{{/next.id}}
 		</nav>
 	</script>
