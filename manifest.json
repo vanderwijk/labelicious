@@ -2,7 +2,7 @@
 	"name": "Labelicious.eu",
 	"short_name": "Labelicious",
 	"theme_color": "#fe7e01",
-	"background_color": "#fe7e01",
+	"background_color": "#ffffff",
 	"display": "standalone",
 	"orientation": "portrait",
 	"Scope": "/",
