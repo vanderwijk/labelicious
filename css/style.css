@@ -69,7 +69,7 @@ main {
 
 .rotate {
 	animation: rotation 4s infinite ease-out;
-	animation: rotateplane 1.5s infinite ease-out;
+	/*animation: rotateplane 1.5s infinite ease-out;*/
 }
 
 @keyframes rotation {
