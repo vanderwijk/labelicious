@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-	const RESTURL = 'https://www.labelicious.eu/wp-json/'
+	const RESTURL = 'https://labelicious.eu/wp-json/'
 
 	window.addEventListener('hashchange', loadSingleEntry, false);
 
